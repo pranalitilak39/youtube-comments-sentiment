@@ -7,6 +7,10 @@ import pickle
 from sklearn.feature_extraction.text import TfidfVectorizer
 import matplotlib.pyplot as plt
 import re
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 
 # Load saved model and vectorizer
@@ -59,7 +63,8 @@ if video_url != "":  # Only process if input is not empty
         st.stop()
 
     # Initialize YouTube API client
-    api_key = "AIzaSyCxlYnfwXg2BLfJw6Zz_AS_XNCd2Fj3AF4"
+    api_key = os.getenv("YOUTUBE_API_KEY")
+
     youtube = build("youtube", "v3", developerKey=api_key)
 
     # Fetch comments
